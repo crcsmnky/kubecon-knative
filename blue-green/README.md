@@ -2,6 +2,17 @@
 
 *Adapted from [Routing and Managing Traffic with Blue/Green Deployment](https://github.com/knative/docs/blob/master/serving/samples/blue-green-deployment.md)*
 
+## Setup and Context
+
+First run the GKE cluster setup and Knative install, found [here](https://github.com/crcsmnky/kubecon-knative/blob/master/README.md).
+
+Then switch to the `blue-green` directory and set your cluster context for `kubectl`:
+
+```bash
+$ cd kubecon-knative/blue-green/
+$ kctx gke_kubecon-na-2018_us-west1-c_knative-demo
+```
+
 ## Deploying Rev 1 (Blue)
 
 The following steps deploy a sample application that displays "App v1" on a blue background.
