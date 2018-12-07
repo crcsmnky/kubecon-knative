@@ -19,7 +19,7 @@ The following steps deploy a sample application that displays "App v1" on a blue
 
 ```bash
 $ kubectl apply -f blue-green-config-v1.yaml
-$ kubectl apply -f blue-green-route.yaml
+$ kubectl apply -f blue-green-route-100.yaml
 ```
 
 To view the sample app, grab the external IP:
@@ -28,10 +28,10 @@ To view the sample app, grab the external IP:
 $ export IP_ADDRESS=$(kubectl get svc knative-ingressgateway --namespace istio-system --output 'jsonpath={.status.loadBalancer.ingress[0].ip}')
 ```
 
-Then, grab the full hostname:
+Then, set the hostname:
 
 ```bash
-$ export HOST_URL=$(kubectl get ksvc helloworld-go  --output jsonpath='{.status.domain}')
+$ export HOST_URL=blue-green-demo.default.example.com
 ```
 
 Finally, use `curl` to access the deployed app:
