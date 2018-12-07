@@ -18,7 +18,7 @@ gcloud container clusters create $CLUSTER_NAME \
 --machine-type=n1-standard-4 \
 --enable-autoscaling --min-nodes=1 --max-nodes=10 \
 --enable-autorepair \
---scopes=control,service-management,compute-rw,storage-ro,cloud-platform,logging-write,monitoring-write,pubsub,datastore \
+--scopes=service-control,service-management,compute-rw,storage-ro,cloud-platform,logging-write,monitoring-write,pubsub,datastore \
 --num-nodes=5
 
 echo "# Creating cluster-admin role binding for $(gcloud config get-value core/account)"
@@ -27,7 +27,7 @@ kubectl create clusterrolebinding cluster-admin-binding \
 --user=$(gcloud config get-value core/account)
 
 echo "# Installing Istio on cluster ${CLUSTER_NAME}"
-kubectl apply --filename https://raw.githubusercontent.com/knative/serving/master/third_party/istio-1.0.4/istio.yaml
+kubectl apply -f https://raw.githubusercontent.com/knative/serving/master/third_party/istio-1.0.2/istio.yaml
 
 echo "# Enabling istio-injection on default namespace"
 kubectl label namespace default istio-injection=enabled
